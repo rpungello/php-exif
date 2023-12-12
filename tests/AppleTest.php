@@ -1,9 +1,11 @@
 <?php
 
+use Rpungello\PhpExif\Adapters\MultiAdapter;
+use Rpungello\PhpExif\Harnesses\ExiftoolHarness;
 use Rpungello\PhpExif\Reader;
 
 it('can read exif from iPhone 15 images', function () {
-    $reader = new Reader();
+    $reader = new Reader(new ExiftoolHarness(), new MultiAdapter());
     $exif = $reader->read(__DIR__  . '/images/iPhone15.jpeg');
 
     expect($exif->camera->make)->toBe('Apple')
