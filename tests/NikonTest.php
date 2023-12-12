@@ -13,7 +13,7 @@ it('can read exif from Nikon images', function () {
         ->and($exif->exposure->aperture)->toBe('1.8')
         ->and($exif->exposure->shutterSpeed)->toBe('1/4')
         ->and($exif->exposure->iso)->toBe('400')
-        ->and($exif->location->latitude)->toBe(40.26876111111111)
-        ->and($exif->location->longitude)->toBe(74.63961666666667);
+        ->and($exif->location->latitude->toFixed(6))->toBe('40.268761')
+        ->and($exif->location->longitude->toFixed(6))->toBe('74.639617');
 
 });

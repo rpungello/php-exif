@@ -2,6 +2,7 @@
 
 namespace Rpungello\PhpExif;
 
+use Decimal\Decimal;
 use InvalidArgumentException;
 use Rpungello\PhpExif\Exif\Main;
 use RuntimeException;
@@ -116,10 +117,14 @@ class Reader
      * @param string $coordinate
      * @return float
      */
-    private function parseCoordinate(string $coordinate): float
+    private function parseCoordinate(string $coordinate): Decimal
     {
         if (preg_match('/^(\d+) deg (\d+)\' (\d+\.\d+)"/', $coordinate, $matches)) {
-            return (float) $matches[1] + ((float) $matches[2] / 60) + ((float) $matches[3] / 3600);
+            $degrees = new Decimal($matches[1]);
+            $minutes = new Decimal($matches[2]);
+            $seconds = new Decimal($matches[3]);
+
+            return $degrees->add($minutes->div(60))->add($seconds->div(3600));
         } else {
             throw new InvalidArgumentException('Invalid coordinate format');
         }
