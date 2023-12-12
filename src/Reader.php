@@ -64,6 +64,16 @@ class Reader
 
     private function readExif(string $path): array
     {
+        if (! file_exists($path)) {
+            throw new RuntimeException(
+                'File does not exist'
+            );
+        } elseif (! is_readable($path)) {
+            throw new RuntimeException(
+                'File is not readable'
+            );
+        }
+
         $process = proc_open("exiftool -json $path", [
             0 => ['pipe', 'r'],
             1 => ['pipe', 'w'],
