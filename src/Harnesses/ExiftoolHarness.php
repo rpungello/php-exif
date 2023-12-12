@@ -6,7 +6,6 @@ use RuntimeException;
 
 class ExiftoolHarness implements Harness
 {
-
     public function readExif(string $path): array
     {
         if (! file_exists($path)) {

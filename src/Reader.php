@@ -21,6 +21,7 @@ class Reader
     public function read(string $path): Main
     {
         $data = $this->harness->readExif($path);
+
         return $this->adapter->parseExif($data);
     }
 }

@@ -8,6 +8,7 @@ use Faker\Generator;
 class FakerHarness implements Harness
 {
     protected Generator $faker;
+
     public function __construct()
     {
         $this->faker = Factory::create();

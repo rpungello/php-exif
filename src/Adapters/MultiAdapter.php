@@ -2,7 +2,6 @@
 
 namespace Rpungello\PhpExif\Adapters;
 
-use Rpungello\PhpExif\Adapters\Adapter;
 use Rpungello\PhpExif\Exif\Main;
 
 class MultiAdapter extends Adapter

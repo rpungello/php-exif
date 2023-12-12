@@ -101,6 +101,7 @@ class Adapter
                     new Decimal("{$data['GPSLongitude']}"),
                 )
             );
+
             return;
         } else {
             try {
@@ -138,6 +139,7 @@ class Adapter
             if (in_array($dir, ['S', 'W'])) {
                 $decimal = $decimal->mul(-1);
             }
+
             return $decimal;
         } else {
             throw new InvalidArgumentException('Invalid coordinate format');
