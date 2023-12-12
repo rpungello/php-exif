@@ -13,6 +13,8 @@ class Main implements Arrayable, Jsonable
 
     public ?Exposure $exposure;
 
+    public ?Location $location;
+
     public function __construct()
     {
         $this->camera = null;
@@ -41,12 +43,20 @@ class Main implements Arrayable, Jsonable
         return $this;
     }
 
+    public function withLocation(Location $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [
             'camera' => $this->camera?->toArray(),
             'lens' => $this->lens?->toArray(),
             'exposure' => $this->exposure?->toArray(),
+            'location' => $this->location?->toArray(),
         ];
     }
 
