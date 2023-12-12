@@ -20,6 +20,7 @@ class Main implements Arrayable, Jsonable
         $this->camera = null;
         $this->lens = null;
         $this->exposure = null;
+        $this->location = null;
     }
 
     public function withCamera(Camera $camera): self
