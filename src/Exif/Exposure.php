@@ -7,7 +7,7 @@ use Rpungello\PhpExif\Contracts\Jsonable;
 
 class Exposure implements Arrayable, Jsonable
 {
-    public function __construct(public string $aperture, public string $shutterSpeed, public string $iso)
+    public function __construct(public string $aperture, public string $shutterSpeed, public int $iso)
     {
     }
 

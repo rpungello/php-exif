@@ -14,7 +14,7 @@ it('can read exif from iPhone 15 images', function () {
         ->and($exif->lens->model)->toBe('iPhone 15 Pro Max back triple camera 6.86mm f/1.78')
         ->and($exif->exposure->aperture)->toBe('1.8')
         ->and($exif->exposure->shutterSpeed)->toBe('1/120')
-        ->and($exif->exposure->iso)->toBe('160')
+        ->and($exif->exposure->iso)->toBe(160)
         ->and($exif->location->latitude->toFixed(6))->toBe('40.268550')
         ->and($exif->location->longitude->toFixed(6))->toBe('-74.639114');
 
