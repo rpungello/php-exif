@@ -87,6 +87,14 @@ class Reader
         }
 
         $result = stream_get_contents($pipes[1]);
+        $error = stream_get_contents($pipes[2]);
+
+        if (! empty($error)) {
+            throw new RuntimeException(
+                $error
+            );
+        }
+
         fclose($pipes[0]);
         fclose($pipes[1]);
         fclose($pipes[2]);
