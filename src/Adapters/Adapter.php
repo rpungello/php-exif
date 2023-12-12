@@ -94,17 +94,27 @@ class Adapter
             return;
         }
 
-        try {
-            $latitude = $this->parseCoordinate($data['GPSLatitude']);
-            $longitude = $this->parseCoordinate($data['GPSLongitude']);
-
+        if (is_float($data['GPSLatitude']) && is_float($data['GPSLongitude'])) {
             $exif->withLocation(
                 new Location(
-                    $latitude,
-                    $longitude,
+                    new Decimal("{$data['GPSLatitude']}"),
+                    new Decimal("{$data['GPSLongitude']}"),
                 )
             );
-        } catch (InvalidArgumentException) {
+            return;
+        } else {
+            try {
+                $latitude = $this->parseCoordinate($data['GPSLatitude']);
+                $longitude = $this->parseCoordinate($data['GPSLongitude']);
+
+                $exif->withLocation(
+                    new Location(
+                        $latitude,
+                        $longitude,
+                    )
+                );
+            } catch (InvalidArgumentException) {
+            }
         }
     }
 
