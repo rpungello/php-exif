@@ -131,6 +131,7 @@ class Reader
             if (in_array($dir, ['S', 'W'])) {
                 $decimal = $decimal->mul(-1);
             }
+
             return $decimal;
         } else {
             throw new InvalidArgumentException('Invalid coordinate format');
