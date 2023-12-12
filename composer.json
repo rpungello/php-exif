@@ -16,7 +16,8 @@
     ],
     "require": {
         "php": "^8.1",
-        "ext-decimal": "*"
+        "ext-decimal": "*",
+        "fakerphp/faker": "^1.23"
     },
     "require-dev": {
         "pestphp/pest": "^2.15",
