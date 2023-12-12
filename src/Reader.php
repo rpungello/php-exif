@@ -112,19 +112,26 @@ class Reader
     }
 
     /**
-     * Takes a string in the format 40 deg 16' 7.54" N and returns a float
+     * Takes a coordinate in degrees, minutes, seconds and converts it to a decimal coordinate
      *
      * @param string $coordinate
-     * @return float
+     * @return Decimal
      */
     private function parseCoordinate(string $coordinate): Decimal
     {
-        if (preg_match('/^(\d+) deg (\d+)\' (\d+\.\d+)"/', $coordinate, $matches)) {
+        if (preg_match('/^(\d+) deg (\d+)\' (\d+\.\d+)" ([NSEW])?/', $coordinate, $matches)) {
             $degrees = new Decimal($matches[1]);
             $minutes = new Decimal($matches[2]);
             $seconds = new Decimal($matches[3]);
+            $dir = $matches[4] ?? null;
 
-            return $degrees->add($minutes->div(60))->add($seconds->div(3600));
+            $decimal = $degrees->add($minutes->div(60))->add($seconds->div(3600));
+
+            // If the direction is South or West, we need to make the decimal negative
+            if (in_array($dir, ['S', 'W'])) {
+                $decimal = $decimal->mul(-1);
+            }
+            return $decimal;
         } else {
             throw new InvalidArgumentException('Invalid coordinate format');
         }
